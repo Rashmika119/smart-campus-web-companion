@@ -1,0 +1,39 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  z-index: 100;
+}
+
+.nav-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  text-decoration: none;
+  gap: 3px;
+  min-height: 56px;
+  color: #6b7280;
+  border-top: 2px solid transparent;
+}
+
+.nav-tab.active {
+  color: #2563eb;
+  border-top: 2px solid #2563eb;
+}
+
+.nav-tab span:first-child {
+  font-size: 20px;
+}
+
+.nav-tab span:last-child {
+  font-size: 11px;
+}
