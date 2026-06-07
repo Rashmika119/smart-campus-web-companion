@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "subject": "Mobile Web App Development",
+    "code": "SENG 41293",
+    "time": "8:00 AM",
+    "room": "LH-201",
+    "lecturer": "Dr. Perera",
+    "day": "Monday"
+  },
+  {
+    "id": 2,
+    "subject": "Software Architecture",
+    "code": "SENG 41201",
+    "time": "10:30 AM",
+    "room": "LH-105",
+    "lecturer": "Dr. Silva",
+    "day": "Monday"
+  },
+  {
+    "id": 3,
+    "subject": "Database Systems",
+    "code": "SENG 31122",
+    "time": "2:00 PM",
+    "room": "LH-302",
+    "lecturer": "Dr. Fernando",
+    "day": "Tuesday"
+  },
+  {
+    "id": 4,
+    "subject": "Mobile Web App Development",
+    "code": "SENG 41293",
+    "time": "9:00 AM",
+    "room": "LH-201",
+    "lecturer": "Dr. Perera",
+    "day": "Wednesday"
+  },
+  {
+    "id": 5,
+    "subject": "Operating Systems",
+    "code": "SENG 31201",
+    "time": "11:00 AM",
+    "room": "LH-401",
+    "lecturer": "Dr. Jayasinghe",
+    "day": "Wednesday"
+  },
+  {
+    "id": 6,
+    "subject": "Data Structures",
+    "code": "SENG 21101",
+    "time": "1:00 PM",
+    "room": "LH-203",
+    "lecturer": "Dr. Kumara",
+    "day": "Thursday"
+  },
+  {
+    "id": 7,
+    "subject": "Software Architecture",
+    "code": "SENG 41201",
+    "time": "3:00 PM",
+    "room": "LH-105",
+    "lecturer": "Dr. Silva",
+    "day": "Friday"
+  },
+  {
+    "id": 8,
+    "subject": "Database Systems",
+    "code": "SENG 31122",
+    "time": "9:30 AM",
+    "room": "LH-302",
+    "lecturer": "Dr. Fernando",
+    "day": "Friday"
+  }
+]
