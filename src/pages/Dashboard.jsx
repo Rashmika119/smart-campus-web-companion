@@ -2,9 +2,61 @@ import { useState, useEffect } from 'react'
 import schedule from '../data/schedule.json'
 import './Dashboard.css'
 
+// ✅ Announcements defined FIRST in same file
+function Announcements() {
+  const [announcements, setAnnouncements] = useState([])
+  const [loading, setLoading]             = useState(true)
+  const [error, setError]                 = useState(null)
+
+  async function fetchData() {
+    setLoading(true)
+    setError(null)
+    try {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/posts?_limit=4'
+      )
+      if (!response.ok) throw new Error('Server error: ' + response.status)
+      const data = await response.json()
+      setAnnouncements(data)
+    } catch (err) {
+      setError('Could not load announcements. Check your connection.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  return (
+    <div>
+      <div className="section-title">
+        <span className="live-dot"></span>
+        Campus announcements · live
+      </div>
+      {loading && (
+        <div className="loading-text">Loading announcements...</div>
+      )}
+      {error && !loading && (
+        <div className="error-box">
+          <p>{error}</p>
+          <button className="retry-btn" onClick={fetchData}>Retry</button>
+        </div>
+      )}
+      {!loading && !error && announcements.map(ann => (
+        <div className="ann-card" key={ann.id}>
+          <h3>{ann.title}</h3>
+          <p>{ann.body}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ✅ Dashboard comes AFTER so it can see Announcements above
 export default function Dashboard() {
 
-  // --- greeting based on time of day ---
   function getGreeting() {
     const hour = new Date().getHours()
     if (hour < 12) return 'Good morning'
@@ -12,12 +64,10 @@ export default function Dashboard() {
     return 'Good evening'
   }
 
-  // --- get today's day name e.g. "Wednesday" ---
   function getTodayName() {
     return new Date().toLocaleDateString('en-US', { weekday: 'long' })
   }
 
-  // --- get today's full date e.g. "Wednesday · June 3, 2026" ---
   function getTodayFull() {
     return new Date().toLocaleDateString('en-US', {
       weekday: 'long',
@@ -27,31 +77,25 @@ export default function Dashboard() {
     })
   }
 
-  // --- filter lectures to only show today's ---
   const todayLectures = schedule.filter(
     lecture => lecture.day === getTodayName()
   )
 
-  // --- load profile name from localStorage ---
   const savedProfile = JSON.parse(localStorage.getItem('sc_profile') || '{}')
   const firstName = savedProfile.name
     ? savedProfile.name.trim().split(' ')[0]
     : 'Student'
 
-  // --- load assignments from localStorage for stats ---
   const assignments = JSON.parse(localStorage.getItem('sc_assignments') || '[]')
   const pendingCount = assignments.filter(a => !a.done).length
 
   return (
     <div className="dashboard">
-
-      {/* header */}
       <div className="dashboard-header">
         <h1>{getGreeting()}, {firstName}</h1>
         <p>{getTodayFull()}</p>
       </div>
 
-      {/* stats row */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="value">{todayLectures.length}</div>
@@ -63,7 +107,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* today's lectures */}
       <div className="section-title">Today's lectures</div>
 
       {todayLectures.length === 0 ? (
@@ -82,9 +125,7 @@ export default function Dashboard() {
         ))
       )}
 
-      {/* announcements section — filled in step 4 */}
       <Announcements />
-
     </div>
   )
 }
