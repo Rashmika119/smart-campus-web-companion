@@ -197,18 +197,34 @@
 }
 
 /* Save button */
+/* save button */
 .save-btn {
   width: 100%;
-  background: #2563eb;
-  color: #fff;
+  padding: 13px;
+  background: #e5e7eb;
+  color: #9ca3af;
   border: none;
   border-radius: 10px;
-  padding: 14px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  min-height: 48px;
   cursor: pointer;
-  transition: background 0.2s;
+  min-height: 48px;
+  margin-bottom: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* lights up blue when there are unsaved changes */
+.save-btn-active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* unsaved changes warning */
+.unsaved-msg {
+  font-size: 12px;
+  color: #f59e0b;
+  text-align: center;
+  margin-bottom: 8px;
 }
 
 .save-btn:hover   { background: #1d4ed8; }
