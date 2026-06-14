@@ -16,7 +16,7 @@
 
 .stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   margin: 16px 0;
 }
@@ -24,17 +24,18 @@
 .stat-card {
   background: #f9fafb;
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 10px 12px;
+  text-align: center;
 }
 
 .stat-card .value {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 500;
   color: #111827;
 }
 
 .stat-card .label {
-  font-size: 11px;
+  font-size: 9px;
   color: #6b7280;
   margin-top: 2px;
 }

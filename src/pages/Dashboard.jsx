@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import schedule from '../data/schedule.json'
 import './Dashboard.css'
+import { getAllNotes } from '../db'
 
 // ✅ Announcements defined FIRST in same file
 function Announcements() {
   const [announcements, setAnnouncements] = useState([])
-  const [loading, setLoading]             = useState(true)
-  const [error, setError]                 = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
 
   async function fetchData() {
     setLoading(true)
@@ -28,6 +30,8 @@ function Announcements() {
   useEffect(() => {
     fetchData()
   }, [])
+
+
 
   return (
     <div>
@@ -56,6 +60,8 @@ function Announcements() {
 
 // ✅ Dashboard comes AFTER so it can see Announcements above
 export default function Dashboard() {
+
+  const [notesCount, setNotesCount] = useState(0)
 
   function getGreeting() {
     const hour = new Date().getHours()
@@ -89,6 +95,10 @@ export default function Dashboard() {
   const assignments = JSON.parse(localStorage.getItem('sc_assignments') || '[]')
   const pendingCount = assignments.filter(a => !a.done).length
 
+  useEffect(() => {
+    getAllNotes().then(notes => setNotesCount(notes.length))
+  }, [])
+
   return (
     <div className="dashboard">
       <div className="dashboard-header">
@@ -104,6 +114,10 @@ export default function Dashboard() {
         <div className="stat-card">
           <div className="value">{pendingCount}</div>
           <div className="label">Assignments pending</div>
+        </div>
+        <div className="stat-card">
+          <div className="value">{notesCount}</div>
+          <div className="label">Notes saved</div>
         </div>
       </div>
 
