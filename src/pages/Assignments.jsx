@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Assignments.css'
-import schedule from '../data/schedule.json'
 
 // helpers
 function today() {
@@ -28,6 +27,9 @@ export default function Assignments() {
 
   // active filter — 'all' | 'pending' | 'done'
   const [filter, setFilter] = useState('all')
+
+  const [schedule, setSchedule] = useState([])
+  const [loading, setLoading] = useState(true)
 
   // save to localStorage whenever tasks change
   function save(updated) {
@@ -75,6 +77,24 @@ export default function Assignments() {
   const doneCount = tasks.filter(t => t.done).length
   const pendingCount = tasks.filter(t => !t.done).length
   const percent = tasks.length ? Math.round((doneCount / tasks.length) * 100) : 0
+
+  useEffect(() => {
+    async function fetchSchedule() {
+      try {
+        const response = await fetch(
+          'https://6a380b13c105017aa6399990.mockapi.io/schedule'
+        )
+        if (!response.ok) throw new Error('Failed to fetch schedule')
+        const data = await response.json()
+        setSchedule(data)
+      } catch (err) {
+        console.error('Schedule fetch error:', err)
+      } finally {
+        setScheduleLoading(false)
+      }
+    }
+    fetchSchedule()
+  }, [])
 
   const subjects = [...new Set(schedule.map(item => item.subject))]
 
