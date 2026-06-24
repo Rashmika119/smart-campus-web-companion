@@ -1,71 +1,114 @@
+/* ============================================
+   PROFILE PAGE
+   ============================================ */
+
 .profile-page {
-  padding: 20px 16px 80px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f3f4f6;
 }
 
-.profile-page h1 {
-  font-size: 22px;
+/* ── Header band ── */
+.profile-header {
+  background: #185FA5;
+  padding: 40px 20px 56px;
+  position: relative;
+  text-align: left;
+}
+
+.profile-header h1 {
+  font-size: 20px;
   font-weight: 500;
+  color: #E6F1FB;
   margin-bottom: 4px;
 }
 
-.profile-page > p {
+.profile-subtitle {
   font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 20px;
+  color: #85B7EB;
 }
 
-/* Avatar / photo */
-.avatar-wrapper {
-  position: relative;
-  width: 80px;
-  margin: 0 auto 20px;
+/* ── Floating avatar ── */
+.avatar-wrap {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: #dbeafe;
-  color: #1d4ed8;
-  font-size: 28px;
-  font-weight: 600;
+  background: #B5D4F4;
+  color: #042C53;
+  font-size: 26px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  border: 3px solid #f3f4f6;
 }
 
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ── Scrollable body ── */
+.profile-body {
+  padding: 52px 16px 100px;
 }
 
-.avatar-edit-btn {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #fff;
-  border: 2px solid #fff;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  min-height: unset;
+/* ── Stats row ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.avatar-input {
-  display: none;
+.stat-card {
+  background: #ffffff;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
 }
 
-/* Form */
+.stat-val {
+  font-size: 24px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.stat-lbl {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* ── Info cards ── */
+.info-card {
+  background: #ffffff;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px 16px 4px;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+/* ── Form groups ── */
 .form-group {
   margin-bottom: 14px;
+}
+
+.form-group.last {
+  margin-bottom: 18px;
 }
 
 .form-group label {
@@ -79,158 +122,87 @@
 .form-group select {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #e5e7eb;
+  border: 0.5px solid #d1d5db;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 15px;
   color: #111827;
-  background: #fff;
-  transition: border-color 0.2s;
+  background: #f9fafb;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #185FA5;
+  box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.1);
+  background: #ffffff;
 }
 
-/* Credits block */
-.credits-block {
-  background: #f0f7ff;
-  border: 1px solid #bfdbfe;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 20px;
-}
-
-.credits-block label {
-  font-size: 12px;
-  color: #6b7280;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.credits-input-row {
+/* ── Credit progress ── */
+.credit-label-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.credits-number {
-  font-size: 36px;
-  font-weight: 700;
-  color: #1d4ed8;
-  min-width: 60px;
-}
-
-.credits-slash {
-  font-size: 18px;
-  color: #9ca3af;
-}
-
-.credits-total {
-  font-size: 18px;
+  justify-content: space-between;
+  font-size: 13px;
   color: #6b7280;
-}
-
-.credits-input-row input {
-  font-size: 36px;
-  font-weight: 700;
-  color: #1d4ed8;
-  border: none;
-  background: transparent;
-  width: 70px;
-  padding: 0;
-}
-
-.credits-input-row input:focus {
-  outline: none;
-}
-
-.credit-percent {
-  font-size: 12px;
-  color: #6b7280;
-  text-align: right;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .credit-bar-bg {
   height: 8px;
-  background: #bfdbfe;
+  background: #e5e7eb;
   border-radius: 99px;
   overflow: hidden;
+  margin-bottom: 18px;
 }
 
 .credit-bar-fill {
   height: 100%;
-  background: #2563eb;
+  background: #185FA5;
   border-radius: 99px;
   transition: width 0.4s;
 }
 
-/* Stats */
-.profile-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.profile-stat-card {
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 14px;
-  text-align: center;
-}
-
-.profile-stat-card .value {
-  font-size: 22px;
-  font-weight: 600;
-  color: #111827;
-}
-
-.profile-stat-card .label {
-  font-size: 11px;
-  color: #6b7280;
-  margin-top: 2px;
-}
-
-/* Save button */
-/* save button */
-.save-btn {
-  width: 100%;
-  padding: 13px;
-  background: #e5e7eb;
-  color: #9ca3af;
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  min-height: 48px;
-  margin-bottom: 6px;
-  transition: background 0.2s, color 0.2s;
-}
-
-/* lights up blue when there are unsaved changes */
-.save-btn-active {
-  background: #2563eb;
-  color: #ffffff;
-}
-
-/* unsaved changes warning */
+/* ── Unsaved warning ── */
 .unsaved-msg {
   font-size: 12px;
-  color: #f59e0b;
+  color: #b45309;
   text-align: center;
   margin-bottom: 8px;
 }
 
-.save-btn:hover   { background: #1d4ed8; }
-.save-btn.success { background: #16a34a; }
+/* ── Save button ── */
+.save-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: #e5e7eb;
+  color: #9ca3af;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.2s, color 0.2s;
+}
 
+.save-btn-active {
+  background: #185FA5;
+  color: #E6F1FB;
+}
+
+.save-btn-active:hover {
+  background: #0C447C;
+}
+
+.save-btn-success {
+  background: #3B6D11;
+  color: #EAF3DE;
+}
+
+/* ── Responsive ── */
 @media (max-width: 375px) {
-  .avatar       { width: 68px; height: 68px; font-size: 24px; }
-  .credits-number { font-size: 28px; }
+  .avatar        { width: 60px; height: 60px; font-size: 22px; }
+  .stat-val      { font-size: 20px; }
+  .profile-header h1 { font-size: 18px; }
 }

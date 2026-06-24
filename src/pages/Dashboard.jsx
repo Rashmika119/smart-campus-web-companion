@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import schedule from '../data/schedule.json'
 import './Dashboard.css'
 import { getAllNotes } from '../db'
 
@@ -61,6 +60,8 @@ function Announcements() {
 // ✅ Dashboard comes AFTER so it can see Announcements above
 export default function Dashboard() {
 
+  const [schedule, setSchedule] = useState([])
+  const [scheduleLoading, setScheduleLoading] = useState(true)
   const [notesCount, setNotesCount] = useState(0)
 
   function getGreeting() {
@@ -82,6 +83,26 @@ export default function Dashboard() {
       day: 'numeric',
     })
   }
+
+    // fetch schedule from mockapi.io
+  useEffect(() => {
+    async function fetchSchedule() {
+      try {
+        const response = await fetch(
+          'https://6a380b13c105017aa6399990.mockapi.io/schedule'
+        )
+        if (!response.ok) throw new Error('Failed to fetch schedule')
+        const data = await response.json()
+        setSchedule(data)
+      } catch (err) {
+        console.error('Schedule fetch error:', err)
+      } finally {
+        setScheduleLoading(false)
+      }
+    }
+    fetchSchedule()
+  }, [])
+
 
   const todayLectures = schedule.filter(
     lecture => lecture.day === getTodayName()
@@ -123,21 +144,32 @@ export default function Dashboard() {
 
       <div className="section-title">Today's lectures</div>
 
-      {todayLectures.length === 0 ? (
+      {scheduleLoading && (
+        <div>
+          {[1, 2].map(i => (
+            <div className="skeleton-card" key={i}>
+              <div className="skeleton skeleton-line" style={{ width: '40%' }} />
+              <div className="skeleton skeleton-line" style={{ width: '70%' }} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {!scheduleLoading && todayLectures.length === 0 && (
         <div className="no-lectures">
           No lectures today — enjoy your day!
         </div>
-      ) : (
-        todayLectures.map(lecture => (
-          <div className="lecture-card" key={lecture.id}>
-            <span className="lecture-time">{lecture.time}</span>
-            <div className="lecture-info">
-              <h3>{lecture.subject}</h3>
-              <p>{lecture.room} · {lecture.lecturer}</p>
-            </div>
-          </div>
-        ))
       )}
+
+      {!scheduleLoading && todayLectures.map(lecture => (
+        <div className="lecture-card" key={lecture.id}>
+          <span className="lecture-time">{lecture.time}</span>
+          <div className="lecture-info">
+            <h3>{lecture.subject}</h3>
+            <p>{lecture.room} · {lecture.lecturer}</p>
+          </div>
+        </div>
+      ))}
 
       <Announcements />
     </div>

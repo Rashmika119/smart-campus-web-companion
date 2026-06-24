@@ -60,110 +60,111 @@ export default function Profile() {
 
 return (
     <div className="profile-page">
-
-      <h1>Profile</h1>
-      <p className="subtitle">Your academic details</p>
-
-      {/* avatar */}
-      <div className="avatar">
-        {profile.name ? getInitials(profile.name) : '?'}
-      </div>
-
-      {/* stats — moved to TOP */}
-      <div className="stats-row">
-        <div className="stat-card">
-          <div className="val">{doneCount}</div>
-          <div className="lbl">Tasks done</div>
-        </div>
-        <div className="stat-card">
-          <div className="val">{creditsLeft}</div>
-          <div className="lbl">Credits left</div>
+ 
+      {/* Blue header band */}
+      <div className="profile-header">
+        <h1>Profile</h1>
+        <p className="profile-subtitle">Your academic details</p>
+ 
+        {/* Avatar floats out of the header */}
+        <div className="avatar-wrap">
+          <div className="avatar">
+            {profile.name ? getInitials(profile.name) : '?'}
+          </div>
         </div>
       </div>
-
-      <div className="divider" />
-
-      {/* name */}
-      <div className="form-group">
-        <label>Full name</label>
-        <input
-          name="name"
-          value={profile.name}
-          onChange={handleChange}
-          placeholder="e.g. Ashan Perera"
-        />
-      </div>
-
-      {/* registration number */}
-      <div className="form-group">
-        <label>Registration number</label>
-        <input
-          name="regNumber"
-          value={profile.regNumber}
-          onChange={handleChange}
-          placeholder="e.g. SE/2021/017"
-        />
-      </div>
-
-      {/* year of study */}
-      <div className="form-group">
-        <label>Year of study</label>
-        <select
-          name="year"
-          value={profile.year}
-          onChange={handleChange}
+ 
+      {/* Scrollable body */}
+      <div className="profile-body">
+ 
+        {/* Stats */}
+        <div className="stats-row">
+          <div className="stat-card">
+            <div className="stat-val">{doneCount}</div>
+            <div className="stat-lbl">Tasks done</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-val">{creditsLeft}</div>
+            <div className="stat-lbl">Credits left</div>
+          </div>
+        </div>
+ 
+        {/* Personal info card */}
+        <div className="info-card">
+          <p className="card-title">Personal info</p>
+ 
+          <div className="form-group">
+            <label>Full name</label>
+            <input
+              name="name"
+              value={profile.name}
+              onChange={handleChange}
+              placeholder="e.g. Ashan Perera"
+            />
+          </div>
+ 
+          <div className="form-group">
+            <label>Registration number</label>
+            <input
+              name="regNumber"
+              value={profile.regNumber}
+              onChange={handleChange}
+              placeholder="e.g. SE/2021/017"
+            />
+          </div>
+ 
+          <div className="form-group last">
+            <label>Year of study</label>
+            <select name="year" value={profile.year} onChange={handleChange}>
+              <option value="">Select year...</option>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+            </select>
+          </div>
+        </div>
+ 
+        {/* Credit progress card */}
+        <div className="info-card">
+          <p className="card-title">Credit progress</p>
+ 
+          <div className="form-group">
+            <label>Completed credits (out of 120)</label>
+            <input
+              name="credits"
+              type="number"
+              min="0"
+              max="120"
+              value={profile.credits}
+              onChange={handleChange}
+              placeholder="e.g. 72"
+            />
+          </div>
+ 
+          <div className="credit-label-row">
+            <span>{credits} / 120</span>
+            <span>{creditPct}%</span>
+          </div>
+          <div className="credit-bar-bg">
+            <div className="credit-bar-fill" style={{ width: `${creditPct}%` }} />
+          </div>
+        </div>
+ 
+        {/* Unsaved warning */}
+        {hasChanges && !saved && (
+          <p className="unsaved-msg">You have unsaved changes</p>
+        )}
+ 
+        {/* Save button */}
+        <button
+          className={`save-btn ${hasChanges ? 'save-btn-active' : ''} ${saved ? 'save-btn-success' : ''}`}
+          onClick={handleSave}
         >
-          <option value="">Select year...</option>
-          <option value="1st Year">1st Year</option>
-          <option value="2nd Year">2nd Year</option>
-          <option value="3rd Year">3rd Year</option>
-          <option value="4th Year">4th Year</option>
-        </select>
+          {saved ? '✓ Saved!' : 'Save profile'}
+        </button>
+ 
       </div>
-
-      {/* completed credits */}
-      <div className="form-group">
-        <label>Completed credits (out of 120)</label>
-        <input
-          name="credits"
-          type="number"
-          min="0"
-          max="120"
-          value={profile.credits}
-          onChange={handleChange}
-          placeholder="e.g. 72"
-        />
-      </div>
-
-      {/* credit progress bar */}
-      <div className="credit-section">
-        <div className="credit-label-row">
-          <span>Credit progress</span>
-          <span>{credits} / 120 ({creditPct}%)</span>
-        </div>
-        <div className="credit-bar-bg">
-          <div
-            className="credit-bar-fill"
-            style={{ width: `${creditPct}%` }}
-          />
-        </div>
-      </div>
-
-      <div className="divider" />
-
-      {/* unsaved changes warning */}
-      {hasChanges && !saved && (
-        <p className="unsaved-msg">You have unsaved changes</p>
-      )}
-
-      {/* save button — moved to BOTTOM */}
-      <button
-        className={`save-btn ${hasChanges ? 'save-btn-active' : ''}`}
-        onClick={handleSave}
-      >
-        {saved ? '✓ Saved!' : 'Save profile'}
-      </button>
-
     </div>
   )
 }
