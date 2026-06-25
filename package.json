@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Rashmika119.github.io/smart-campus-web-companion",
+  "homepage": "https://rashmika119.github.io/smart-campus-web-companion",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
