@@ -98,11 +98,17 @@ export default function Assignments() {
 
   const subjects = [...new Set(schedule.map(item => item.subject))]
 
-  return (
-    <div className="assignments-page page-container">
+return (
+  <div className="assignments-page">
 
+    {/* blue header band */}
+    <div className="page-header-band">
       <h1>Assignments</h1>
       <p>Track your tasks and deadlines</p>
+    </div>
+
+    {/* content wrapper — adds side padding to everything below */}
+    <div className="assignments-content">
 
       {/* progress bar */}
       <div className="progress-row">
@@ -125,13 +131,9 @@ export default function Assignments() {
 
         <select value={subject} onChange={e => setSubject(e.target.value)}>
           <option value="">Select subject</option>
-
           {subjects.map(sub => (
-            <option key={sub} value={sub}>
-              {sub}
-            </option>
+            <option key={sub} value={sub}>{sub}</option>
           ))}
-
           <option value="General">General</option>
         </select>
 
@@ -202,5 +204,8 @@ export default function Assignments() {
       )}
 
     </div>
-  )
+    {/* end assignments-content */}
+
+  </div>
+)
 }

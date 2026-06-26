@@ -1,11 +1,13 @@
 .notes-page {
-  padding: 20px 16px;
+  padding: 0;
 }
 
-.notes-page h1 {
-  font-size: 22px;
-  font-weight: 500;
-  color: #111827;
+.notes-page .capture-zone,
+.notes-page .capture-btn,
+.notes-page .section-title,
+.notes-page .notes-grid {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .notes-page .subtitle {

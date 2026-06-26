@@ -1,17 +1,9 @@
 .dashboard {
-  padding: 20px 16px 16px;
+  padding: 0px 0px 16px;
 }
 
-.dashboard-header h1 {
-  font-size: 22px;
-  font-weight: 500;
-  color: #111827;
-}
-
-.dashboard-header p {
-  font-size: 13px;
-  color: #6b7280;
-  margin-top: 3px;
+.dashboard-content {
+  padding: 0 16px 16px;
 }
 
 .stats-grid {

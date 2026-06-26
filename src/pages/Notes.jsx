@@ -128,112 +128,113 @@ export default function Notes() {
   }
 
   // ── delete a note ──
-    async function handleDelete(id) {
-      try {
-        await deleteNote(id)
-        setNotes(prev => prev.filter(n => n.id !== id))
-      } catch (err) {
-        console.error('Failed to delete note:', err)
-      }
+  async function handleDelete(id) {
+    try {
+      await deleteNote(id)
+      setNotes(prev => prev.filter(n => n.id !== id))
+    } catch (err) {
+      console.error('Failed to delete note:', err)
     }
+  }
 
-    return (
-      <div className="notes-page">
+  return (
+    <div className="notes-page">
 
+      <div className="page-header-band">
         <h1>Lecture notes</h1>
-        <p className="subtitle">Capture handwritten notes with camera</p>
+        <p>Capture handwritten notes with camera</p>
+      </div>
+      {/* permission denied error */}
+      {permissionDenied && (
+        <div className="permission-error">
+          <p>📵 Camera not available</p>
+          <small>
+            Please allow camera access in your browser
+            settings and make sure no other app is using
+            the camera.
+          </small>
+        </div>
+      )}
 
-        {/* permission denied error */}
-        {permissionDenied && (
-          <div className="permission-error">
-            <p>📵 Camera not available</p>
-            <small>
-              Please allow camera access in your browser
-              settings and make sure no other app is using
-              the camera.
-            </small>
-          </div>
-        )}
-
-        {/* success message */}
-        {captureSuccess && (
-          <div className="capture-success">
-            ✓ Note captured and saved to IndexedDB!
-          </div>
-        )}
+      {/* success message */}
+      {captureSuccess && (
+        <div className="capture-success">
+          ✓ Note captured and saved to IndexedDB!
+        </div>
+      )}
 
       {/* camera preview — shown when camera is open */}
-        {cameraOpen && (
-          <div className="camera-preview-wrap">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="camera-video"
-            />
-            <canvas ref={canvasRef} className="hidden-canvas" />
-            <div className="camera-actions">
-              <button className="btn-take-photo" onClick={takePhoto}>
-                📸 Take photo
-              </button>
-              <button className="btn-cancel-camera" onClick={closeCamera}>
-                ✕ Cancel
-              </button>
-            </div>
+      {cameraOpen && (
+        <div className="camera-preview-wrap">
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            className="camera-video"
+          />
+          <canvas ref={canvasRef} className="hidden-canvas" />
+          <div className="camera-actions">
+            <button className="btn-take-photo" onClick={takePhoto}>
+              📸 Take photo
+            </button>
+            <button className="btn-cancel-camera" onClick={closeCamera}>
+              ✕ Cancel
+            </button>
           </div>
-        )}
-
-        {/* capture zone */}
-        {!cameraOpen && (
-          <div className="capture-zone" onClick={openCamera}>
-            <span className="camera-icon">📷</span>
-            <p>Tap to capture a note</p>
-            <small>Saved permanently using IndexedDB</small>
-          </div>
-        )}
-
-        {!cameraOpen && (
-          <button className="capture-btn" onClick={openCamera}>
-            Open camera
-          </button>
-        )}
-
-        {/* saved notes */}
-        <div className="section-title">
-          Saved notes ({notes.length})
         </div>
+      )}
 
-        {/* loading state */}
-        {loading && (
-          <p style={{ fontSize: 13, color: '#9ca3af', textAlign: 'center', padding: 16 }}>
-            Loading notes...
-          </p>
-        )}
-
-        <div className="notes-grid">
-          {!loading && notes.length === 0 && (
-            <div className="empty-notes">
-              <p>No notes yet</p>
-              <small>Capture your first lecture note above</small>
-            </div>
-          )}
-
-          {notes.map(note => (
-            <div key={note.id} className="note-thumb">
-              <img src={note.image} alt="Lecture note" />
-              <div className="note-thumb-label">{note.timestamp}</div>
-              <button
-                className="note-delete-btn"
-                onClick={() => handleDelete(note.id)}
-                aria-label="Delete note"
-              >
-                ✕
-              </button>
-            </div>
-          ))}
+      {/* capture zone */}
+      {!cameraOpen && (
+        <div className="capture-zone" onClick={openCamera}>
+          <span className="camera-icon">📷</span>
+          <p>Tap to capture a note</p>
+          <small>Saved permanently using IndexedDB</small>
         </div>
+      )}
 
+      {!cameraOpen && (
+        <button className="capture-btn" onClick={openCamera}>
+          Open camera
+        </button>
+      )}
+
+      {/* saved notes */}
+      <div className="section-title">
+        Saved notes ({notes.length})
       </div>
-    )
-  }
+
+      {/* loading state */}
+      {loading && (
+        <p style={{ fontSize: 13, color: '#9ca3af', textAlign: 'center', padding: 16 }}>
+          Loading notes...
+        </p>
+      )}
+
+      <div className="notes-grid">
+        {!loading && notes.length === 0 && (
+          <div className="empty-notes">
+            <p>No notes yet</p>
+            <small>Capture your first lecture note above</small>
+          </div>
+        )}
+
+        {notes.map(note => (
+          <div key={note.id} className="note-thumb">
+            <img src={note.image} alt="Lecture note" />
+            <div className="note-thumb-label">{note.timestamp}</div>
+            <button
+              className="note-delete-btn"
+              onClick={() => handleDelete(note.id)}
+              aria-label="Delete note"
+            >
+              ✕
+            </button>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  )
+}

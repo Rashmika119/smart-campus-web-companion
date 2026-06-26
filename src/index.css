@@ -33,6 +33,39 @@ body {
   position: relative;
 }
 
+
+/* ============================================
+   SHARED BLUE HEADER BAND — all pages
+   ============================================ */
+.page-header-band {
+  background: #185FA5;
+  padding: 40px 20px 24px;
+  margin-bottom: 16px;
+}
+
+.page-header-band h1 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #E6F1FB;
+  margin-bottom: 4px;
+}
+
+.page-header-band p {
+  font-size: 13px;
+  color: #85B7EB;
+}
+
+/* small phones */
+@media (max-width: 375px) {
+  .page-header-band h1 {
+    font-size: 18px;
+  }
+
+  .page-header-band {
+    padding: 30px 16px 20px;
+  }
+}
+
 /* ============================================
    TOUCH TARGETS — rubric requirement
    ============================================ */

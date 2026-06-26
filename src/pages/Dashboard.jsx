@@ -84,7 +84,7 @@ export default function Dashboard() {
     })
   }
 
-    // fetch schedule from mockapi.io
+  // fetch schedule from mockapi.io
   useEffect(() => {
     async function fetchSchedule() {
       try {
@@ -122,56 +122,59 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      <div className="dashboard-header">
+      <div className="page-header-band">
         <h1>{getGreeting()}, {firstName}</h1>
         <p>{getTodayFull()}</p>
       </div>
 
-      <div className="stats-grid">
-        <div className="stat-card">
-          <div className="value">{todayLectures.length}</div>
-          <div className="label">Lectures today</div>
-        </div>
-        <div className="stat-card">
-          <div className="value">{pendingCount}</div>
-          <div className="label">Assignments pending</div>
-        </div>
-        <div className="stat-card">
-          <div className="value">{notesCount}</div>
-          <div className="label">Notes saved</div>
-        </div>
-      </div>
+      <div className="dashboard-content">
 
-      <div className="section-title">Today's lectures</div>
-
-      {scheduleLoading && (
-        <div>
-          {[1, 2].map(i => (
-            <div className="skeleton-card" key={i}>
-              <div className="skeleton skeleton-line" style={{ width: '40%' }} />
-              <div className="skeleton skeleton-line" style={{ width: '70%' }} />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {!scheduleLoading && todayLectures.length === 0 && (
-        <div className="no-lectures">
-          No lectures today — enjoy your day!
-        </div>
-      )}
-
-      {!scheduleLoading && todayLectures.map(lecture => (
-        <div className="lecture-card" key={lecture.id}>
-          <span className="lecture-time">{lecture.time}</span>
-          <div className="lecture-info">
-            <h3>{lecture.subject}</h3>
-            <p>{lecture.room} · {lecture.lecturer}</p>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="value">{todayLectures.length}</div>
+            <div className="label">Lectures today</div>
+          </div>
+          <div className="stat-card">
+            <div className="value">{pendingCount}</div>
+            <div className="label">Assignments pending</div>
+          </div>
+          <div className="stat-card">
+            <div className="value">{notesCount}</div>
+            <div className="label">Notes saved</div>
           </div>
         </div>
-      ))}
 
-      <Announcements />
+        <div className="section-title">Today's lectures</div>
+
+        {scheduleLoading && (
+          <div>
+            {[1, 2].map(i => (
+              <div className="skeleton-card" key={i}>
+                <div className="skeleton skeleton-line" style={{ width: '40%' }} />
+                <div className="skeleton skeleton-line" style={{ width: '70%' }} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!scheduleLoading && todayLectures.length === 0 && (
+          <div className="no-lectures">
+            No lectures today — enjoy your day!
+          </div>
+        )}
+
+        {!scheduleLoading && todayLectures.map(lecture => (
+          <div className="lecture-card" key={lecture.id}>
+            <span className="lecture-time">{lecture.time}</span>
+            <div className="lecture-info">
+              <h3>{lecture.subject}</h3>
+              <p>{lecture.room} · {lecture.lecturer}</p>
+            </div>
+          </div>
+        ))}
+
+        <Announcements />
+      </div>
     </div>
   )
 }
