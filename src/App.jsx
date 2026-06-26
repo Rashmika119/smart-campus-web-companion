@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import BottomNav   from './components/BottomNav'   
+import BottomNav   from './compnents/BottomNav'   
 import Dashboard   from './pages/dashboard/Dashboard'
 import Assignments from './pages/assignment/Assignments'
 import Notes       from './pages/note/Notes'
