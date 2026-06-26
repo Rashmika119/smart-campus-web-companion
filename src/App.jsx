@@ -7,13 +7,13 @@ import Profile     from './pages/profile/Profile'
 
 export default function App() {
   return (
-    <BrowserRouter basename="/smart-campus-web-companion">
+    <BrowserRouter basename="/">
       <div style={{ paddingBottom: 64 }}>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />}   />
-          <Route path="/assignments" element={<Assignments />} />
-          <Route path="/notes"       element={<Notes />}       />
-          <Route path="/profile"     element={<Profile />}     />
+          <Route path="/smart-campus-web-companion" element={<Dashboard />}   />
+          <Route path="/smart-campus-web-companion/assignments" element={<Assignments />} />
+          <Route path="/smart-campus-web-companion/notes"       element={<Notes />}       />
+          <Route path="/smart-campus-web-companion/profile"     element={<Profile />}     />
         </Routes>
       </div>
       <BottomNav />
