@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import './Dashboard.css'
-import { getAllNotes } from '../db'
+import { getAllNotes } from '../../db'
 
 // ✅ Announcements defined FIRST in same file
 function Announcements() {
   const [announcements, setAnnouncements] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
 
 
   async function fetchData() {
