@@ -2,10 +2,10 @@ import { NavLink } from 'react-router-dom'
 import './BottomNav.css'
 
 const tabs = [
-  { path: '/', icon: '🏠', label: 'Dashboard'  },
-  { path: '/assignments', icon: '✅', label: 'Assignments' },
-  { path: '/notes',       icon: '📷', label: 'Notes'       },
-  { path: '/profile',     icon: '👤', label: 'Profile'     },
+  { path: '/smart-campus-web-companion', icon: '🏠', label: 'Dashboard'  },
+  { path: '/smart-campus-web-companion/assignments', icon: '✅', label: 'Assignments' },
+  { path: '/smart-campus-web-companion/notes',       icon: '📷', label: 'Notes'       },
+  { path: '/smart-campus-web-companion',     icon: '👤', label: 'Profile'     },
 ]
 
 export default function BottomNav() {
