@@ -1,5 +1,5 @@
 .notes-page {
-  padding: 0;
+  padding: 0 0 280px;
 }
 
 .notes-page .capture-zone,
@@ -8,6 +8,18 @@
 .notes-page .notes-grid {
   margin-left: 16px;
   margin-right: 16px;
+}
+
+.capture-zone,
+.capture-btn {
+  position: relative;
+  z-index: 101;
+  pointer-events: auto;
+}
+
+.capture-btn {
+  margin-bottom: 32px;
+  touch-action: manipulation;
 }
 
 .notes-page .subtitle {
@@ -55,7 +67,8 @@
 }
 
 .capture-btn {
-  width: 100%;
+  display: block;
+  width: calc(100% - 32px);
   padding: 13px;
   background: #111827;
   color: #fff;
@@ -65,7 +78,8 @@
   font-weight: 500;
   cursor: pointer;
   min-height: 48px;
-  margin-bottom: 8px;
+  margin: 0 auto 16px;
+  box-sizing: border-box;
 }
 
 .capture-btn:active {
