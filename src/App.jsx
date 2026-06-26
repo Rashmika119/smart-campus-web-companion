@@ -7,16 +7,16 @@ import Profile     from './pages/profile/Profile'
 
 export default function App() {
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/smart-campus-web-companion">
       <div style={{ paddingBottom: 64 }}>
         <Routes>
-          <Route path="/smart-campus-web-companion" element={<Dashboard />}   />
+          <Route path="/dashboard" element={<Dashboard />}   />
           <Route path="/assignments" element={<Assignments />} />
           <Route path="/notes"       element={<Notes />}       />
           <Route path="/profile"     element={<Profile />}     />
         </Routes>
       </div>
       <BottomNav />
-    </BrowserRouter>
+    </BrowserRouter>. 
   )
 }
