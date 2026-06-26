@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import BottomNav   from './compnents/BottomNav'
 import Dashboard   from './pages/dashboard/Dashboard'
 import Assignments from './pages/assignment/Assignments'
@@ -7,7 +7,7 @@ import Profile     from './pages/profile/Profile'
 
 export default function App() {
   return (
-    <BrowserRouter basename="/smart-campus-web-companion">
+    <HashRouter>
       <div style={{ paddingBottom: 64 }}>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -19,6 +19,6 @@ export default function App() {
         </Routes>
       </div>
       <BottomNav />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
