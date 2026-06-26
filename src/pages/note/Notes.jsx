@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { saveNote, getAllNotes, deleteNote } from '../../db'
-import './Notes.css'
+import './notes.css'
 
 export default function Notes() {
 

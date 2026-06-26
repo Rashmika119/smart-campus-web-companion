@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './Dashboard.css'
+import './dashboard.css'
 import { getAllNotes } from '../../db'
 
 // ✅ Announcements defined FIRST in same file

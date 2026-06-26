@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './Assignments.css'
+import './assignments.css'
 
 // helpers
 function today() {
